@@ -2,7 +2,7 @@
 
 Proyecto de ejemplo para **aprender React consumiendo una API** (peticiones HTTP y CRUD básico) en un entorno moderno, del módulo de Desarrollo Web en Entorno Cliente, para el curso 2025 / 2026.
 
-La app se ejecuta con **Vite** y realiza llamadas a una API REST simulada usando **Axios**. Para el backend de prácticas se utiliza **json-server** con el fichero **`tasks.json`** incluido en el repositorio. :contentReference[oaicite:1]{index=1}
+La app se ejecuta con **Vite** y realiza llamadas a una API REST simulada usando **Axios**. Para el backend de prácticas se utiliza **json-server** con el fichero **`tasks.json`** incluido en el repositorio.
 
 ## Objetivo didáctico
 

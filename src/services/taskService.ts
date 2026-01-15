@@ -15,5 +15,11 @@ export const taskService = {
                 return new Promise((resolve) => {
             setTimeout(() => resolve(axios.delete<void>(API_URL + "/" + id).then(() => {})), 1000); // Simula retardo de red
         });
+    },
+    create(titulo : string) : Promise<Task> {
+        // return axios.post<Task>((API_URL), {title: titulo, completed: false}).then(response => response.data)
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(axios.post<Task>((API_URL), {title: titulo, completed: false}).then(response => response.data)), 1000); // Simula retardo de red
+        });
     }
 };

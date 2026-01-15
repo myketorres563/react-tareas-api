@@ -9,6 +9,7 @@ function App() {
   const [tareas, setTareas] = useState<Task[]>([]);
     const [cargando, setCargando] = useState<boolean>(true);
     const [editando, setEditando] = useState<boolean>(false);
+    const [tareaEditable, setTareaEditable] = useState<Task | null>(null);
 
   function borrarTarea(tareaObjetivo : Task) :void {
     setEditando(true);
@@ -16,6 +17,14 @@ function App() {
         setTareas(tareas.filter(tarea => tarea.id != tareaObjetivo.id))
         setEditando(false);
     })
+  }
+
+  function editarTarea(tareaObjetivo : Task) :void {
+    console.log("Editando tarea " + tareaObjetivo.id)
+    setEditando(true);
+    /*
+    Hacer la petición de update con axios y, cuando termine, poner Editando a false, y tareaEditable a null
+    */
   }
 
   function anadirTarea(titulo : string) :void {
@@ -38,8 +47,8 @@ function App() {
   return (
     <div>
       <h1>Lista de tareas</h1>
-      <TaskList tareas={tareas} cargando={cargando} editando={editando} borrarTarea={borrarTarea} />
-      <TaskForm anadirTarea={anadirTarea} editando={editando} />
+      <TaskList tareas={tareas} cargando={cargando} editando={editando} borrarTarea={borrarTarea} setTareaEditable={setTareaEditable} />
+      <TaskForm anadirTarea={anadirTarea} editando={editando} tareaEditable={tareaEditable} editarTarea={editarTarea} />
     </div>
   )
 }

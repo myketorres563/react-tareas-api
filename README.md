@@ -41,6 +41,8 @@ La app se ejecuta con **Vite** y realiza llamadas a una API REST simulada usando
 
 3. Haz una copia del archivo `tasks.json.dist` y nómbralo como `tasks.json`.
 
+4. Configura las variables de entorno. Una forma de hacerlo es copiando el archivo `.env.dist` a `.env` o `.env.dist.local` y personalizándolo con la configuración de tu sistema.
+
 ## Levantar la API (json-server)
 
 Este proyecto incluye el fichero `tasks.json` en la raíz.

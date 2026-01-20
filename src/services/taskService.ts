@@ -1,7 +1,13 @@
 import axios from 'axios';
 import type { Task } from '../types/Task';
 
-const API_URL = 'http://localhost:3000/tasks';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string | undefined;
+
+if (API_BASE_URL == undefined) {
+    throw new Error("No está definida la URL de la API");
+}
+
+const API_URL = API_BASE_URL +"/tasks";
 
 export const taskService = {
     getAll(): Promise<Task[]> {

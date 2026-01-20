@@ -5,10 +5,11 @@ type TaskListProps = {
   cargando: boolean;
   peticionEnProgreso: boolean;
   borrarTarea: (tarea : Task) => void;
+  editarTarea: (tarea : Task) => void;
   setTareaSeleccionada: (tarea : Task) => void;
 };
 
-function TaskList({ tareas, cargando, peticionEnProgreso, setTareaSeleccionada, borrarTarea}: TaskListProps) {
+function TaskList({ tareas, cargando, peticionEnProgreso, setTareaSeleccionada, borrarTarea, editarTarea}: TaskListProps) {
   return (
     <>
       {cargando && <p>Cargando...</p>}
@@ -17,9 +18,15 @@ function TaskList({ tareas, cargando, peticionEnProgreso, setTareaSeleccionada, 
           {tareas &&
             tareas.map((tarea) => (
               <li key={tarea.id} className={tarea.completed ? "completada"  :""}>
-                { /* TODO: Poner ✅ si está completa*/}
+                { tarea.completed && "✅ " }
                 {tarea.title}{" "}
-                { /* Mostrar botón completar si está incompleta */ }
+                { !tarea.completed && (<button
+                  disabled={peticionEnProgreso}
+                  className="complete"
+                  onClick={() => editarTarea({...tarea, completed: true})}
+                >
+                  ✅
+                </button>)}
                 <button
                   disabled={peticionEnProgreso}
                   className="edit"

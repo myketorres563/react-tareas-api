@@ -30,9 +30,6 @@ function App() {
         setPeticionEnProgreso(false);
         cancelarEdicionTarea();
     })
-    /*
-    TODO: Hacer la petición de update con axios y, cuando termine, poner peticionEnProgreso a false, y tareaSeleccionada a null
-    */
   }
 
   function anadirTarea(titulo : string) :void {
@@ -55,7 +52,7 @@ function App() {
   return (
     <div>
       <h1>Lista de tareas</h1>
-      <TaskList tareas={tareas} cargando={cargando} peticionEnProgreso={peticionEnProgreso} borrarTarea={borrarTarea} setTareaSeleccionada={setTareaSeleccionada} />
+      <TaskList tareas={tareas} cargando={cargando} peticionEnProgreso={peticionEnProgreso} borrarTarea={borrarTarea} editarTarea={editarTarea} setTareaSeleccionada={setTareaSeleccionada} />
       <TaskForm anadirTarea={anadirTarea} peticionEnProgreso={peticionEnProgreso} tareaSeleccionada={tareaSeleccionada} editarTarea={editarTarea} cancelarEdicionTarea={cancelarEdicionTarea} />
     </div>
   )

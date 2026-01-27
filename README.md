@@ -24,27 +24,36 @@ La app se ejecuta con **Vite** y realiza llamadas a una API REST simulada usando
 - Node.js (recomendado: versión LTS)
 - npm (incluido con Node.js)
 
-
 ## Instalación
 
 1. Clona el repositorio:
+
    ```bash
    git clone https://github.com/sambrista/dwec-react-task-list-example.git
    cd dwec-react-task-list-example
    ```
-
 2. Instala dependencias:
 
    ```bash
    npm install
    ```
-
 3. Haz una copia del archivo `tasks.json.dist` y nómbralo como `tasks.json`.
-
+3. Haz una copia del archivo `backend/db.json.dist` y nómbralo como `db.json`.
 4. Configura las variables de entorno. Una forma de hacerlo es copiando el archivo `.env.dist` a `.env` o `.env.dist.local` y personalizándolo con la configuración de tu sistema.
 
-## Levantar la API (json-server)
+## Levantar la API (docker) (versión con autenticación)
 
+Este proyecto incluye un backend que se levanta usando contenedores Docker.
+
+```bash
+docker compose up --build
+```
+
+## Levantar la API (json-server) (versión sin autenticación)
+
+<!-- !!!warning ¡Cuidado!
+   Esta API es la versión antigua, que no soporta autenticación. -->
+   
 Este proyecto incluye el fichero `tasks.json` en la raíz.
 
 ### Opción A: usar json-server con npx (recomendado para clase)
@@ -83,9 +92,17 @@ Por defecto, Vite suele servir en:
    ```bash
    npx json-server tasks.json
    ```
-
 2. Terminal 2 (frontend):
 
    ```bash
    npm run dev
    ```
+
+## Usuarios
+
+La aplicación, cuando se usa con el backend dockerizado, cuenta con dos usuarios:
+
+| ID | Nombre  | Contraseña | Email               |
+|:--:|:--------|:-----------|:--------------------|
+| 1  | usuario | usuario    | <usuario@gmail.com> |
+| 2  | admin   | admin      | <admin@gmail.com>   |

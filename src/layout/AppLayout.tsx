@@ -15,7 +15,10 @@ export default function AppLayout() {
                         { isAuthenticated && user && <NavLink to="/profile">Perfil</NavLink> }
                         { !isAuthenticated && <NavLink to="/login">Login</NavLink> }
                         { !isAuthenticated && <NavLink to="/register">Register</NavLink> }
-                        { isAuthenticated && user && <span>{user.name} <button className="nav-btn" onClick={logout}>Logout</button></span> }
+                        { isAuthenticated && user && <>
+                            <div className="nav-username"><span className="username-message">Usuario:</span><span className="username-name">{user.name}</span></div>
+                            <button className="nav-btn logout" onClick={logout}>Logout</button>
+                            </>}
                     </nav>
                 </div>
             </header>

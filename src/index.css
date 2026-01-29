@@ -89,7 +89,7 @@ body {
   gap: 10px;
 }
 
-.navlinks a {
+.navlinks a, .navlinks .nav-btn {
   color: var(--muted);
   text-decoration: none;
   padding: 8px 10px;
@@ -471,4 +471,33 @@ form button.cancel:hover {
 
 form button[type="submit"] {
   box-shadow: 0 6px 18px rgba(124, 92, 255, 0.45);
+}
+
+/* =========================================================
+   NAV USER / LOGOUT
+   ========================================================= */
+
+/* Nombre de usuario */
+.nav-username {
+  padding: 2px 10px;
+  color: var(--text);
+  display:flex;
+  flex-direction: column;
+}
+
+.nav-username .username-message {
+  font-size: 9px;
+}
+
+/* Botón logout */
+.nav-btn.logout {
+  background: rgba(239,68,68,0.18);
+  border: 1px solid rgba(239,68,68,0.35);
+  color: #fff;
+}
+
+/* Hover logout */
+.nav-btn.logout:hover {
+  background: rgba(239,68,68,0.35);
+  transform: translateY(-1px);
 }

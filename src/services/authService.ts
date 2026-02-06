@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import type { AuthResponse } from "../types/Auth";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string | undefined;
@@ -10,5 +10,11 @@ export const AuthService = {
 
     me(token: string) {
         return axios.get(`${API_BASE_URL}/auth/me`, { headers: {Authorization: `Bearer ${token}`} } ).then((r) => r.data)
-    }
+    },
+    register(email:string, password:string, name: string) {
+        return axios.post<AuthResponse>(`${API_BASE_URL}/auth/register`, {email, password, name} ).then( (r) => r.data);
+    },
+
+    isAuthError: isAxiosError
+
 }

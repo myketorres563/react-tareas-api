@@ -10,9 +10,9 @@ export default function TaskDetailPage() {
 
   useEffect(() => {
     if (id) {
-      taskService.get(parseInt(id)).then((tarea) => setTareaSeleccionada(tarea)).finally(() => setCargando(false))
+      taskService.get(parseInt(id)).then((tarea) => setTareaSeleccionada(tarea)).catch(() => {setTareaSeleccionada(null)}).finally(() => setCargando(false))
     }
-  }, [])
+  }, [id])
 
   if (!id) {
     return <p>No se ha proporcionado una ID</p>
@@ -23,7 +23,7 @@ export default function TaskDetailPage() {
   return (<section className="task-hero">
     <div className="task-hero-top">
       <Link className="link" to="/tasks">← Volver</Link>
-      {!cargando && tareaSeleccionada && <span className={tareaSeleccionada.completed ? "badge badge-ok" : "badge badge-pending"}> {/* TODO: poner clase badge-ok o badge-pending dependiendo de si está completa o no" */}
+      {!cargando && tareaSeleccionada && <span className={tareaSeleccionada.completed ? "badge badge-ok" : "badge badge-pending"}>
         {tareaSeleccionada.completed ? "COMPLETADA" : "PENDIENTE"}</span>}
     </div>
     {!cargando && tareaSeleccionada && <>
@@ -33,6 +33,7 @@ export default function TaskDetailPage() {
 
     }
     {cargando && <p>Cargando...</p>}
+    { !cargando && tareaSeleccionada === null && <p>El usuario no tiene la tarea indicada.</p>} 
     <div className="task-hero-actions">
       <Link className="btn" to="/tasks">Ir a la lista</Link>
     </div>

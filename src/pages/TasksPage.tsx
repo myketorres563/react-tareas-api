@@ -5,6 +5,7 @@ import { taskService } from "../services/taskService";
 import type { Task } from "../types/Task";
 
 export default function TasksPage() {
+  const [error, setError] = useState<string |null>(null);
   const [tareas, setTareas] = useState<Task[]>([]);
   const [cargando, setCargando] = useState<boolean>(true);
   const [peticionEnProgreso, setPeticionEnProgreso] = useState<boolean>(false);
@@ -44,6 +45,7 @@ export default function TasksPage() {
     taskService
       .getAll()
       .then((listaTareas) => setTareas(listaTareas))
+      .catch((respuestaErronea) => { setError(respuestaErronea.message + ": " + respuestaErronea.response.data.message)})
       .finally(() => setCargando(false));
   }, []);
 
@@ -56,6 +58,7 @@ export default function TasksPage() {
       </p>
 
       {/* Reutilizamos TaskList, pero le daremos click para detalle desde CSS/estructura en la siguiente iteración */}
+      { !error && <>
       <TaskList
         tareas={tareas}
         cargando={cargando}
@@ -63,15 +66,18 @@ export default function TasksPage() {
         borrarTarea={borrarTarea}
         setTareaSeleccionada={setTareaSeleccionada}
         editarTarea={editarTarea}
-      />
+      /> 
 
       <TaskForm
+        key = {tareaSeleccionada?.id ?? null}
         anadirTarea={anadirTarea}
         peticionEnProgreso={peticionEnProgreso}
         tareaSeleccionada={tareaSeleccionada}
         editarTarea={editarTarea}
         cancelarEdicionTarea={cancelarEdicionTarea}
       />
+      </> }
+      {error && <div className="toast error">{error}</div>}
     </section>
   );
 }

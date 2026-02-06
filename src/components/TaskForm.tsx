@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Task } from "../types/Task";
 
 type TaskFormProps = {
@@ -12,10 +12,6 @@ type TaskFormProps = {
 function TaskForm({anadirTarea, peticionEnProgreso, tareaSeleccionada, editarTarea, cancelarEdicionTarea} : TaskFormProps ) {
     const [titulo, setTitulo] = useState(tareaSeleccionada?.title ?? "");
 
-    useEffect(() => {
-        setTitulo(tareaSeleccionada?.title ?? "")
-    }, [tareaSeleccionada]);
-
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (titulo.trim().length > 0) {
@@ -24,6 +20,7 @@ function TaskForm({anadirTarea, peticionEnProgreso, tareaSeleccionada, editarTar
                 editarTarea(nuevaTarea)
             } else {
                 anadirTarea(titulo.trim())
+                setTitulo("")
             }
         }
     }
